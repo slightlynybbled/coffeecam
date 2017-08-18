@@ -1,0 +1,25 @@
+<table class="table table-striped">
+    <tr>
+        <th colspan="2">stats</th>
+    </tr>
+    <tr>
+        <td>caffeine addicts</td>
+        <td>{{ users }}</td>
+    </tr>
+    <tr>
+        <td>id most logged in</td>
+        <td>{{ user_logins[0] }} ({{ user_logins[1] }} logins)</td>
+    </tr>
+    <tr>
+        <td>your logins</td>
+        <td>{{ your_logins }}</td>
+    </tr>
+    <tr>
+        <td>your id</td>
+        <td>{{ user_id }}</td>
+    </tr>
+    <tr>
+        <td>haven't logged in for</td>
+        <td>{{ last_login }}</td>
+    </tr>
+</table>
