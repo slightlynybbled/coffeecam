@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>coffeeCam</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap-4.0.0/css/bootstrap.css') }}">
+
+
+</head>
+
+<body>
+
+{% block content %} {% endblock %}
+
+
+<hr>
+{% block footer %}
+    <div class="text-center">
+        <a href="/">home</a> | <a href="/about">about</a>
+        <p>by jason r jones</p>
+    </div>
+
+
+{% endblock %}
+
+<script src="{{ url_for('static', filename='js/jquery-3.2.1.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/tether.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/popper.min.js') }}"></script>
+<script src="{{ url_for('static', filename='bootstrap-4.0.0/js/bootstrap.min.js') }}"></script>
+
+{% block scripts %} {% endblock %}
+
+</body>
+
+</html>

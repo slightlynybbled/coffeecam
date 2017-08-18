@@ -1,0 +1,25 @@
+{% extends "_base.jinja2" %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-3-md">
+            <h1>coffeeCam</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-9-md">
+            <img class="img-fluid rounded" src="{{ url_for('static', filename='ram/live.jpg') }}" id="coffeepic">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12-md">
+            <button id="takePic" class="btn btn-primary">Take a New Pic!</button>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/custom.js') }}"></script>
+{% endblock %}
