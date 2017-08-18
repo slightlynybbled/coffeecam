@@ -61,9 +61,23 @@ def about():
     return flask.render_template('about.jinja2')
 
 
-@app.route('/set_time')
+@app.route('/set_time', methods=['POST'])
 def set_time():
-    print('not implemented')
+    date = int(int(flask.request.form['date'])/1000)
+    timezone_offset = int(flask.request.form['timezoneOffset'])
+
+    # dt = datetime.datetime.fromtimestamp(date - timezone_offset)
+    dt = datetime.datetime.fromtimestamp(date)
+    now = datetime.datetime.now()
+
+    if dt < now + datetime.timedelta(hours=1) > dt or dt > now - datetime.timedelta(hours=1):
+        logger.info('time already set, leaving it alone')
+    else:
+        logger.warning('setting time to {}'.format(dt))
+
+        new_dt = dt.strftime('%m/%d/%y %H:%M:%S')
+        os.system('hwclock --set --date="{}"'.format(new_dt))
+
     return '', 204
 
 

@@ -9,6 +9,10 @@ $(document).ready(
         $("#takePic").click(function(){
             $.post("/take_pic", {}, function(data){replacePic(data);});
         });
+
+        /* submit time using a post request */
+        var date = new Date();
+        $.post('/set_time', {"date": date.getTime(), 'timezoneOffset': date.getTimezoneOffset() * 60.0});
     }
 );
 
