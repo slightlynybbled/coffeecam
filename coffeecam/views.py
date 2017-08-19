@@ -4,18 +4,26 @@ import flask
 import logging
 import os
 
+import picamera
+
 from coffeecam.util import find_most_logins, md5
-from coffeecam import show_stats
+from coffeecam import show_stats, cam_path
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
 pages = flask.Blueprint('pages', __name__)
 
-
+# use these to keep local stats
 users = set()
 user_logins = dict()
 havent_logged_in_since = dict()
+
+
+last_pic_time = datetime.datetime.now()
+
+cam = picamera.PiCamera()
+cam.capture(cam_path)
 
 
 @pages.route('/')
@@ -63,7 +71,7 @@ def set_time():
     now = datetime.datetime.now()
 
     if dt < now + datetime.timedelta(hours=1) > dt or dt > now - datetime.timedelta(hours=1):
-        logger.info('time already set, leaving it alone')
+        logger.info('time set, leaving it alone')
     else:
         logger.warning('setting time to {}'.format(dt))
 
@@ -81,12 +89,7 @@ def take_pic():
     now = datetime.datetime.now()
 
     if (now - last_pic_time) > datetime.timedelta(seconds=2):
-
-        logger.info('new pic complete!')
         last_pic_time = datetime.datetime.now()
-
-    else:
-        logger.warning('old pic is still fresh, skipping')
 
     src = flask.url_for('static', filename='ram/live.jpg') + '?src=' + md5(cam_path)
 

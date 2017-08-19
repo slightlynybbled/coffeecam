@@ -17,12 +17,6 @@ logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO)
 
 
-last_pic_time = datetime.datetime.now()
-
-cam = picamera.PiCamera()
-cam.capture(cam_path)
-
-
 @app.context_processor
 def override_url_for():
     return dict(url_for=hashed_url_for)

@@ -8,7 +8,6 @@ def create_app():
     app = flask.Flask(__name__, template_folder='templates')
 
     from coffeecam.views import pages
-
     app.register_blueprint(pages)
 
     return app
