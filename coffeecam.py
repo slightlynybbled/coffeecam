@@ -12,8 +12,11 @@ import humanize
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.DEBUG)
 
-cam = picamera.PiCamera()
+cam_path = '/home/jason/coffeecam/static/ram/live.jpg'
 last_pic_time = datetime.datetime.now()
+
+cam = picamera.PiCamera()
+cam.capture(cam_path)
 
 users = set()
 user_logins = dict()
@@ -88,9 +91,8 @@ def take_pic():
     logger.debug('requesting new pic')
     now = datetime.datetime.now()
 
-    cam_path = '/home/jason/coffeecam/static/ram/live.jpg'
     if (now - last_pic_time) > datetime.timedelta(seconds=2):
-        cam.capture(cam_path)
+
         logger.info('new pic complete!')
         last_pic_time = datetime.datetime.now()
 
