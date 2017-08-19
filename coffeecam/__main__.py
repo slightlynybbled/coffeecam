@@ -8,11 +8,13 @@ import picamera
 from waitress import serve
 import humanize
 
+from coffeecam.config import *
+
 
 logger = logging.getLogger(__name__)
-logging.basicConfig(level=logging.DEBUG)
+logging.basicConfig(level=logging.INFO)
 
-cam_path = '/home/jason/coffeecam/static/ram/live.jpg'
+
 last_pic_time = datetime.datetime.now()
 
 cam = picamera.PiCamera()
@@ -21,8 +23,6 @@ cam.capture(cam_path)
 users = set()
 user_logins = dict()
 havent_logged_in_since = dict()
-
-logged_in = dict()
 
 app = flask.Flask(__name__, template_folder='templates')
 
@@ -54,8 +54,8 @@ def index():
         your_logins=user_logins[user_id],
         user_logins=find_most_logins(user_logins),
         user_id=user_id,
-        last_login=last_logged_in
-
+        last_login=last_logged_in,
+        show_stats=show_stats
     )
 
 
@@ -67,9 +67,7 @@ def about():
 @app.route('/set_time', methods=['POST'])
 def set_time():
     date = int(int(flask.request.form['date'])/1000)
-    timezone_offset = int(flask.request.form['timezoneOffset'])
 
-    # dt = datetime.datetime.fromtimestamp(date - timezone_offset)
     dt = datetime.datetime.fromtimestamp(date)
     now = datetime.datetime.now()
 
@@ -146,5 +144,6 @@ def find_most_logins(user_logins):
     return u, l
 
 
-serve(app, host='0.0.0.0', port=80)
-#app.run(host='0.0.0.0', port=80, debug=True)
+def main():
+    serve(app, host='0.0.0.0', port=80)
+    #app.run(host='0.0.0.0', port=80, debug=True)

@@ -11,13 +11,19 @@
 
     <div class="row">
 
+        {% if show_stats %}
         <div class="col-md-8">
+        {% else %}
+        <div class="col-md-12">
+        {% endif %}
             <img class="img-fluid rounded" src="{{ url_for('static', filename='ram/live.jpg') }}" id="coffeepic">
         </div>
 
+        {% if show_stats %}
         <div class="col-md-4">
             {% include "stats.jinja2" %}
         </div>
+        {% endif %}
 
     </div>
 

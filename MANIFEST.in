@@ -1,0 +1,2 @@
+recursive-include coffeecam/static/ *
+recursive-include coffeecam/templates/ *
