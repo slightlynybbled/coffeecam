@@ -7,7 +7,7 @@ import os
 import picamera
 
 from coffeecam.util import find_most_logins, md5
-from coffeecam import show_stats, MEDIA_DIR, MEDIA_NAME
+from coffeecam import *
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
@@ -93,6 +93,6 @@ def take_pic():
         cam.capture(os.path.join(MEDIA_DIR, MEDIA_NAME))
 
     path = os.path.join(MEDIA_DIR, MEDIA_NAME)
-    src = 'uploads/live.jpg?' + md5(path)
+    src = MEDIA_URL + MEDIA_NAME + '?' + md5(path)
 
     return flask.jsonify({'src': src})

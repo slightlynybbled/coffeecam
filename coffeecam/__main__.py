@@ -15,8 +15,8 @@ logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.DEBUG)
 
 
-@app.route('/uploads/<filename>')
-def download_file(filename):
+@app.route(MEDIA_URL + '<filename>')
+def media(filename):
     file_path = os.path.join(MEDIA_DIR, filename)
     logger.debug(file_path)
     return flask.send_file(file_path)
