@@ -21,7 +21,7 @@ setup(
     long_description=README,
     classifiers=[
       "Programming Language :: Python",
-      "Framework :: Pyramid",
+      "Framework :: Flask",
       "Topic :: Internet :: WWW/HTTP",
       "Topic :: Internet :: WWW/HTTP :: WSGI :: Application",
     ],
