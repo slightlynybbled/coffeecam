@@ -1,0 +1,13 @@
+{
+  "web":
+  {
+    "media url": "/ram/",
+    "stats": true
+  },
+
+  "local":
+  {
+    "directory": "/home/jason/ram/",
+    "name": "live.jpg"
+  }
+}
