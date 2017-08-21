@@ -1,7 +1,6 @@
 $(document).ready(
     function(){
         setInterval(function(){
-            // $('#coffeepic').load(document.URL +  ' #coffeepic');
             $.post("/take_pic", {}, function(data){replacePic(data);});
         },
         10000);
@@ -13,13 +12,7 @@ $(document).ready(
 );
 
 function replacePic(data){
-    var random = (Math.random() * 1000000).toFixed(0);
-    console.log(data);
-    console.log(random);
-
     var pic = $('#coffeepic');
-    var picPath = pic.prop('src');
-    //var newPicPath = picPath + "?" + (Math.random() * 1000000).toFixed(0);
 
     pic.fadeOut(200);
     pic.attr("src", data['src']);
