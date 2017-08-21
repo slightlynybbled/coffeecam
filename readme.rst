@@ -35,7 +35,9 @@ or the dependency ``picamera`` will not be runnable::
 Environment Setup
 ===================
 
-How to set up your linux environment, RAM drive, etc.
+In order to reduce wear on your SD card, you should set up a RAM drive
+that can be utilized to serve the constantly-changing image.  An example
+of how to do this may be found in the `setup directory </setup>`_.
 
 -------------------
 Running
@@ -45,9 +47,10 @@ This package will serve up pages by simply starting it.  If you have
 installed coffeecam into the path ``/home/myname/py3env``, then
 you can simply::
 
-    /home/myname/py3env/bin/coffeecam
+    /home/myname/py3env/bin/coffeecam -c /my/config/file.json
 
-to begin package execution.
+The configuration file is *required* to begin execution.  An example
+configuration file may be found in the `examples directory </examples>`_.
 
 ===================
 Dependencies
@@ -69,5 +72,9 @@ How it Works
 
 This package will run a flask instance which serves up a page containing
 a screenshot.  A new camera picture is triggered by each client every
-10s.  If the current image is less than 2s old, then the new image request
-is ignored.
+10s using POST requests.  If the current image is less than 2s old, then
+the new image request is ignored.
+
+When the ``POST`` request returns, it contains
+the path and cache-busting ID of the file which allows easy retrieval of
+the file itself.
