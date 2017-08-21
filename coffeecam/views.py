@@ -7,10 +7,10 @@ import os
 import picamera
 
 from coffeecam.util import find_most_logins, md5
-from coffeecam import show_stats, cam_path
+from coffeecam import show_stats, MEDIA_DIR, MEDIA_NAME
 
 logger = logging.getLogger(__name__)
-logger.setLevel(logging.INFO)
+logger.setLevel(logging.DEBUG)
 
 pages = flask.Blueprint('pages', __name__)
 
@@ -23,7 +23,7 @@ havent_logged_in_since = dict()
 last_pic_time = datetime.datetime.now()
 
 cam = picamera.PiCamera()
-cam.capture(cam_path)
+cam.capture(os.path.join(MEDIA_DIR, MEDIA_NAME))
 
 
 @pages.route('/')
@@ -78,19 +78,21 @@ def set_time():
         new_dt = dt.strftime('%m/%d/%y %H:%M:%S')
         os.system('hwclock --set --date="{}"'.format(new_dt))
 
-    return '', 204
+    return '', 200
 
 
 @pages.route('/take_pic', methods=['POST'])
 def take_pic():
     global last_pic_time
 
-    logger.debug('requesting new pic')
     now = datetime.datetime.now()
 
     if (now - last_pic_time) > datetime.timedelta(seconds=2):
         last_pic_time = datetime.datetime.now()
+        logger.debug('stale image detected')
+        cam.capture(os.path.join(MEDIA_DIR, MEDIA_NAME))
 
-    src = flask.url_for('static', filename='ram/live.jpg') + '?src=' + md5(cam_path)
+    path = os.path.join(MEDIA_DIR, MEDIA_NAME)
+    src = 'uploads/live.jpg?' + md5(path)
 
     return flask.jsonify({'src': src})

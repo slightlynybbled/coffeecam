@@ -1,9 +1,7 @@
 import logging
 import os
-import datetime
 
 import flask
-import picamera
 from waitress import serve
 
 from coffeecam.config import *
@@ -14,7 +12,14 @@ app = create_app()
 
 
 logger = logging.getLogger(__name__)
-logging.basicConfig(level=logging.INFO)
+logging.basicConfig(level=logging.DEBUG)
+
+
+@app.route('/uploads/<filename>')
+def download_file(filename):
+    file_path = os.path.join(MEDIA_DIR, filename)
+    logger.debug(file_path)
+    return flask.send_file(file_path)
 
 
 @app.context_processor
