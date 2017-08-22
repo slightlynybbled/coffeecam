@@ -54,13 +54,14 @@ def index():
         user_logins=find_most_logins(user_logins),
         user_id=user_id,
         last_login=last_logged_in,
-        show_stats=show_stats
+        show_stats=SHOW_STATS,
+        host=HOST_NAME
     )
 
 
 @pages.route('/about')
 def about():
-    return flask.render_template('about.jinja2')
+    return flask.render_template('about.jinja2', host=HOST_NAME)
 
 
 @pages.route('/set_time', methods=['POST'])
