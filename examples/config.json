@@ -2,6 +2,7 @@
   "web":
   {
     "media url": "/ram/",
+    "host": "me!",
     "stats": true
   },
 

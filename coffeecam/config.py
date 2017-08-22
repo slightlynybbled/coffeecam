@@ -40,5 +40,9 @@ if not MEDIA_DIR.endswith('/'):
 
 MEDIA_NAME = config.get('local').get('name')
 
-show_stats = config.get('web').get('stats')
-show_stats = True if show_stats else False
+HOST_NAME = config.get('web').get('host')
+if HOST_NAME is None:
+    HOST_NAME = 'coffeecam on flask, humanize, watress, and python'
+
+SHOW_STATS = config.get('web').get('stats')
+SHOW_STATS = True if SHOW_STATS else False

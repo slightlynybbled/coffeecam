@@ -56,7 +56,7 @@ configuration file may be found in the `examples directory </examples>`_.
 Dependencies
 ===================
 
-Add dependencies are pip-installable:
+All dependencies are pip-installable:
 
  - flask
  - humanize
