@@ -31,7 +31,7 @@ if not MEDIA_URL.startswith('/'):
 if not MEDIA_URL.endswith('/'):
     MEDIA_URL = MEDIA_URL + '/'
 
-MEDIA_DIR = config.get('local').get('directory')
+MEDIA_DIR = config.get('local').get('media directory')
 
 if not MEDIA_DIR.startswith('/'):
     MEDIA_DIR = '/' + MEDIA_DIR

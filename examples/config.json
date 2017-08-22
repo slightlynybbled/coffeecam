@@ -8,7 +8,7 @@
 
   "local":
   {
-    "directory": "/home/jason/ram/",
+    "media directory": "/home/pi/ram/",
     "name": "live.jpg"
   }
 }
