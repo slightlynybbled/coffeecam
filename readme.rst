@@ -83,5 +83,5 @@ the file itself.
 Screenshots
 -------------------
 
-.. image:: docs/images/coffeecam-full.png
-.. image:: docs/images/coffeecam-small.png
+.. image:: ./docs/images/coffeecam-full.png
+.. image:: ./docs/images/coffeecam-small.png
