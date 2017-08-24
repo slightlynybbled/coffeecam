@@ -78,3 +78,10 @@ the new image request is ignored.
 When the ``POST`` request returns, it contains
 the path and cache-busting ID of the file which allows easy retrieval of
 the file itself.
+
+-------------------
+Screenshots
+-------------------
+
+..image:: docs/images/coffeecam-full.png
+..image:: docs/images/coffeecam-small.png
