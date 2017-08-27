@@ -18,7 +18,7 @@
         {% else %}
         <div class="col-md-12">
         {% endif %}
-            <img class="img-fluid rounded" src="{{ url_for('media', filename='live.jpg') }}" id="coffeepic">
+            <img class="img-fluid rounded" src="{{ url_for('pages.video_feed') }}" id="coffeepic">
         </div>
 
         {% if show_stats %}
@@ -27,8 +27,9 @@
         </div>
         {% endif %}
 
-    </div>
+        </div>
 
+    </div>
 </div>
 
 
