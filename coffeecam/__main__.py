@@ -8,18 +8,12 @@ from coffeecam.config import *
 from coffeecam.util import md5
 from coffeecam import create_app
 
+
 app = create_app()
 
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.DEBUG)
-
-
-@app.route(MEDIA_URL + '<filename>')
-def media(filename):
-    file_path = os.path.join(MEDIA_DIR, filename)
-    logger.debug(file_path)
-    return flask.send_file(file_path)
 
 
 @app.context_processor

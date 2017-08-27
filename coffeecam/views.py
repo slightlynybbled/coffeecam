@@ -4,10 +4,9 @@ import flask
 import logging
 import os
 
-import picamera
-
-from coffeecam.util import find_most_logins, md5
+from coffeecam.util import find_most_logins
 from coffeecam import *
+from coffeecam.camera import Camera
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
@@ -21,9 +20,6 @@ havent_logged_in_since = dict()
 
 
 last_pic_time = datetime.datetime.now()
-
-cam = picamera.PiCamera()
-cam.capture(os.path.join(MEDIA_DIR, MEDIA_NAME))
 
 
 @pages.route('/')
@@ -82,18 +78,16 @@ def set_time():
     return '', 200
 
 
-@pages.route('/take_pic', methods=['POST'])
-def take_pic():
-    global last_pic_time
+def gen(camera):
+    while True:
+        frame = camera.get_frame()
+        yield (b'--frame\r\n'
+               b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
 
-    now = datetime.datetime.now()
 
-    if (now - last_pic_time) > datetime.timedelta(seconds=2):
-        last_pic_time = datetime.datetime.now()
-        logger.debug('stale image detected')
-        cam.capture(os.path.join(MEDIA_DIR, MEDIA_NAME))
-
-    path = os.path.join(MEDIA_DIR, MEDIA_NAME)
-    src = MEDIA_URL + MEDIA_NAME + '?' + md5(path)
-
-    return flask.jsonify({'src': src})
+@pages.route('/video_feed')
+def video_feed():
+    return flask.Response(
+        gen(Camera()),
+        mimetype='multipart/x-mixed-replace; boundary=frame'
+    )

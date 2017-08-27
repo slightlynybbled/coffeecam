@@ -9,40 +9,35 @@ import logging
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 
+SHOW_STATS = False
+HOST_NAME = 'coffeeCam'
 
-if '-c' not in sys.argv and '--config' not in sys.argv:
-    logger.error('!!! configuration not found !!!')
-    sys.exit(1)
 
-if '-c' in sys.argv:
-    index_of_config = sys.argv.index('-c') + 1
-elif '--config' in sys.argv:
-    index_of_config = sys.argv.index('--config') + 1
+def parse_config():
+    global SHOW_STATS, HOST_NAME
 
-logging.debug('config index: {} ({})'.format(index_of_config, sys.argv[index_of_config]))
+    if '-c' not in sys.argv and '--config' not in sys.argv:
+        logger.error('configuration not found, using defaults')
 
-with open(sys.argv[index_of_config], 'r') as f:
-    config = json.loads(f.read())
+        # default configuration values
+        SHOW_STATS = True
 
-MEDIA_URL = config.get('web').get('media url')
+        return
 
-if not MEDIA_URL.startswith('/'):
-    MEDIA_URL = '/' + MEDIA_URL
-if not MEDIA_URL.endswith('/'):
-    MEDIA_URL = MEDIA_URL + '/'
+    if '-c' in sys.argv:
+        index_of_config = sys.argv.index('-c') + 1
+    elif '--config' in sys.argv:
+        index_of_config = sys.argv.index('--config') + 1
 
-MEDIA_DIR = config.get('local').get('media directory')
+    logging.debug('config index: {} ({})'.format(index_of_config, sys.argv[index_of_config]))
 
-if not MEDIA_DIR.startswith('/'):
-    MEDIA_DIR = '/' + MEDIA_DIR
-if not MEDIA_DIR.endswith('/'):
-    MEDIA_DIR = MEDIA_DIR + '/'
+    with open(sys.argv[index_of_config], 'r') as f:
+        config = json.loads(f.read())
 
-MEDIA_NAME = config.get('local').get('name')
+    if config.get('stats'):
+        SHOW_STATS = config.get('stats')
 
-HOST_NAME = config.get('web').get('host')
-if HOST_NAME is None:
-    HOST_NAME = 'coffeecam on flask, humanize, watress, and python'
+    if config.get('host'):
+        HOST_NAME = config.get('host')
 
-SHOW_STATS = config.get('web').get('stats')
-SHOW_STATS = True if SHOW_STATS else False
+    return

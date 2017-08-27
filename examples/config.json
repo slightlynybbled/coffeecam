@@ -1,14 +1,4 @@
 {
-  "web":
-  {
-    "media url": "/ram/",
     "host": "me!",
     "stats": true
-  },
-
-  "local":
-  {
-    "media directory": "/home/pi/ram/",
-    "name": "live.jpg"
-  }
 }
