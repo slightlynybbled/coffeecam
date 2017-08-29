@@ -19,9 +19,11 @@ class Camera(BaseCamera):
         paths.append(img_path + str(i) + '.jpg')
 
     images = [open(path, 'rb').read() for path in paths]
+    current_image = 0
 
     @staticmethod
     def frames():
         while True:
             time.sleep(0.5)
-            yield Camera.images[int(time.time()) % 10]
+            Camera.current_image = (Camera.current_image + 1) % 10
+            yield Camera.images[Camera.current_image]
