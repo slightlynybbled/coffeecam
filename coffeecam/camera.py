@@ -10,9 +10,8 @@ logger.setLevel(logging.DEBUG)
 
 class Camera(BaseCamera):
     """An emulated camera implementation that streams a repeated sequence of
-    files 1.jpg, 2.jpg and 3.jpg at a rate of one frame per second."""
+    files"""
 
-    # img_path = str(os.path.realpath(__file__)) + '/static/img/'
     img_path = os.path.dirname(__file__) + '/static/img/'
     paths = []
 

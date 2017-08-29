@@ -9,7 +9,7 @@ import logging
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 
-SHOW_STATS = False
+SHOW_STATS = True
 HOST_NAME = 'coffeeCam'
 
 
@@ -18,10 +18,6 @@ def parse_config():
 
     if '-c' not in sys.argv and '--config' not in sys.argv:
         logger.error('configuration not found, using defaults')
-
-        # default configuration values
-        SHOW_STATS = True
-
         return
 
     if '-c' in sys.argv:
