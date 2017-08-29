@@ -6,50 +6,25 @@ import os
 
 from coffeecam.util import find_most_logins
 from coffeecam import *
-from coffeecam.camera import Camera
+from coffeecam.camera_pi import Camera
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 
 pages = flask.Blueprint('pages', __name__)
 
-# use these to keep local stats
 users = set()
-user_logins = dict()
-havent_logged_in_since = dict()
-
-
-last_pic_time = datetime.datetime.now()
+last_checkin = dict()
 
 
 @pages.route('/')
 @pages.route('/index')
 def index():
     user_id = flask.request.remote_addr.split('.')[-1]
-    users.add(user_id)
-
-    if user_id not in user_logins.keys():
-        user_logins[user_id] = 1
-    else:
-        user_logins[user_id] += 1
-
-    last_logged_in = havent_logged_in_since.get(user_id)
-    if last_logged_in is not None:
-        td = datetime.datetime.now() - last_logged_in
-        last_logged_in = humanize.naturaldelta(td)
-
-    else:
-        last_logged_in = 'never'
-
-    havent_logged_in_since[user_id] = datetime.datetime.now()
 
     return flask.render_template(
         'index.jinja2',
-        users=len(users),
-        your_logins=user_logins[user_id],
-        user_logins=find_most_logins(user_logins),
         user_id=user_id,
-        last_login=last_logged_in,
         show_stats=SHOW_STATS,
         host=HOST_NAME
     )
@@ -91,3 +66,17 @@ def video_feed():
         gen(Camera()),
         mimetype='multipart/x-mixed-replace; boundary=frame'
     )
+
+
+@pages.route('/users', methods=['POST'])
+def users():
+    user_id = flask.request.remote_addr.split('.')[-1]
+
+    last_checkin[user_id] = datetime.datetime.now()
+
+    current_user_list = []
+    for user, dt_last in last_checkin.items():
+        if dt_last > (datetime.datetime.now() - datetime.timedelta(seconds=10)):
+            current_user_list.append(user)
+
+    return flask.jsonify({'current_user_list': current_user_list})
