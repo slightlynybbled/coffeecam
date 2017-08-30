@@ -66,7 +66,7 @@ From Raspbian, you may wish to add to the crontab in order to start up at boot::
 
 Then append the line::
 
-    $ @reboot /home/myname/py3env/bin/coffeecam
+    @reboot /home/myname/py3env/bin/coffeecam
 
 ===================
 Dependencies
