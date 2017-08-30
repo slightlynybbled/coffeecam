@@ -67,7 +67,7 @@ How it Works
 
 This package will run a flask instance which serves up a page containing
 a series of screenshots.  This originally had a different structure, but after
-coming across `a blog post <https://blog.miguelgrinberg.com/post/video-streaming-with-flask>`,
+coming across `a blog post <https://blog.miguelgrinberg.com/post/video-streaming-with-flask>`_,
 I decided to template the project after that.
 
 -------------------
