@@ -74,9 +74,13 @@ def users():
 
     last_checkin[user_id] = datetime.datetime.now()
 
-    current_user_list = []
+    current_users = []
+    num_of_users = 0
     for user, dt_last in last_checkin.items():
         if dt_last > (datetime.datetime.now() - datetime.timedelta(seconds=10)):
-            current_user_list.append(user)
+            current_users.append(user)
+        num_of_users += 1
 
-    return flask.jsonify({'current_user_list': current_user_list})
+    return flask.jsonify(
+        {'current_users': current_users, 'num_of_users': num_of_users}
+    )

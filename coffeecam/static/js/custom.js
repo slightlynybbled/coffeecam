@@ -17,8 +17,11 @@ $(document).ready(
                     '/users',
                     {},
                     function(data){
-                        var users = data["current_user_list"];
-                        $("#currentUsers").text(users.join(", "));
+                        var allUsers = data["num_of_users"];
+                        var currentUsers = data["current_users"];
+
+                        $("#numOfUsers").text(allUsers.toString());
+                        $("#currentUsers").text(currentUsers.join(", "));
                     }
                 );
             },
