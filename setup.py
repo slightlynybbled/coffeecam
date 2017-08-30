@@ -10,6 +10,7 @@ exec(open(os.path.join(here, 'coffeecam/version.py')).read())
 requires = [
     'flask',
     'humanize',
+    'opencv',
     'picamera',
     'waitress'
 ]
