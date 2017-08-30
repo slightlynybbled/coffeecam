@@ -45,7 +45,7 @@ you can simply::
 The configuration file is not required to begin execution.  If a configuration
 file is not supplied, defaults will be assumed.
 
-An example configuration file may be found in the `examples directory </examples>`_.
+An example configuration file may be found in the `examples directory <https://github.com/slightlynybbled/coffeecam/tree/master/examples>`_.
 
 ===================
 Dependencies
