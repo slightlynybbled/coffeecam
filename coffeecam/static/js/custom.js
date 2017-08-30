@@ -18,7 +18,7 @@ $(document).ready(
                     {},
                     function(data){
                         var users = data["current_user_list"];
-                        console.log(users);
+                        $("#currentUsers").text(users.join(", "));
                     }
                 );
             },
