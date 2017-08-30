@@ -71,6 +71,13 @@ coming across `a blog post <https://blog.miguelgrinberg.com/post/video-streaming
 I decided to template the project after that.
 
 -------------------
+Contributions
+-------------------
+
+All contributions are welcome!  I could use some particular focus on adding tests
+and documentation, but features are always welcome as well!
+
+-------------------
 Screenshots
 -------------------
 
