@@ -36,16 +36,37 @@ or the dependency ``picamera`` will not be runnable::
 Running
 -------------------
 
+===================
+From the Command Line
+===================
+
 This package will serve up pages by simply starting it.  If you have
 installed coffeecam into the path ``/home/myname/py3env``, then
 you can simply::
 
-    /home/myname/py3env/bin/coffeecam -c /my/config/file.json
+    $ sudo /home/myname/py3env/bin/coffeecam
+
+Or, if you wish to specify a configuration file::
+
+    $ sudo /home/myname/py3env/bin/coffeecam -c /my/config/file.json
 
 The configuration file is not required to begin execution.  If a configuration
 file is not supplied, defaults will be assumed.
 
 An example configuration file may be found in the `examples directory <https://github.com/slightlynybbled/coffeecam/tree/master/examples>`_.
+
+===================
+At Reboot
+===================
+
+From Raspbian, you may wish to add to the crontab in order to start up at boot::
+
+    $ sudo su
+    $ crontab -e
+
+Then append the line::
+
+    $ @reboot /home/myname/py3env/bin/coffeecam
 
 ===================
 Dependencies
