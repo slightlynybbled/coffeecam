@@ -4,7 +4,6 @@ import os
 import flask
 from waitress import serve
 
-from coffeecam.config import *
 from coffeecam.util import md5
 from coffeecam import create_app
 

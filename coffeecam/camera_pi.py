@@ -1,15 +1,18 @@
 import io
 import time
 import picamera
+
 from coffeecam.base_camera import BaseCamera
+from coffeecam.config import FRAME_RATE, RESOLUTION
 
 
 class Camera(BaseCamera):
+
     @staticmethod
     def frames():
-        # todo: make resolution and frame rate settable via config file
 
-        with picamera.PiCamera(resolution='720p') as camera:
+        with picamera.PiCamera(
+                resolution=RESOLUTION, framerate=FRAME_RATE) as camera:
             # let camera warm up
             time.sleep(2)
 
@@ -17,7 +20,6 @@ class Camera(BaseCamera):
             for foo in camera.capture_continuous(
                     stream, 'jpeg',
                     use_video_port=True):
-                time.sleep(0.5)
 
                 # return current frame
                 stream.seek(0)

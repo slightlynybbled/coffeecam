@@ -4,6 +4,9 @@ from coffeecam.version import __version__
 from coffeecam.config import *
 
 
+parse_config()
+
+
 def create_app():
     app = flask.Flask(__name__, template_folder='templates')
 

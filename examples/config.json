@@ -1,4 +1,7 @@
 {
     "host": "me!",
-    "stats": true
+    "stats": true,
+    "framerate": 2,
+    "resolution": "720p",
+    "camera": "pi"
 }
