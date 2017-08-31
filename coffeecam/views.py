@@ -4,9 +4,9 @@ import flask
 import logging
 import os
 
-from coffeecam.util import find_most_logins
 from coffeecam import *
 from coffeecam.camera_pi import Camera
+from coffeecam.config import HOST_NAME
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)

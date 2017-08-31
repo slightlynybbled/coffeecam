@@ -52,6 +52,9 @@ def parse_config():
     if config.get('camera'):
         CAMERA = config.get('camera')
 
-
+    logger.debug('SHOW_STATS: {}'.format(SHOW_STATS))
+    logger.debug('HOST_NAME: {}'.format(HOST_NAME))
+    logger.debug('RESOLUTION: {}'.format(RESOLUTION))
+    logger.debug('CAMERA: {}'.format(CAMERA))
 
     return
