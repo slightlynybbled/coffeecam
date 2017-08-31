@@ -7,6 +7,7 @@ Configuration File Parameters
  3. ``framerate`` integer or float, determines the frame rate (higher creates more CPU load)
  4. ``resolution`` string, uses common values from the `pi resolutions <https://picamera.readthedocs.io/en/release-1.13/api_camera.html#piresolution>`_
  5. ``camera`` string, ``pi``, ``opencv``, or ``test`` in order to specify the camera to use
+ 6. ``client time`` true/false, determines whether to set the system time based on the client time
 
 =====
 Notes

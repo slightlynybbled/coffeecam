@@ -15,6 +15,7 @@ HOST_NAME = 'coffeeCam'
 FRAME_RATE = 2
 RESOLUTION = '640x480'
 CAMERA = 'pi'
+USE_CLIENT_TIME = False
 
 
 def parse_config():
@@ -52,10 +53,14 @@ def parse_config():
     if config.get('camera'):
         CAMERA = config.get('camera')
 
+    if config.get('client time'):
+        CAMERA = config.get('client time')
+
     logger.debug('SHOW_STATS: {}'.format(SHOW_STATS))
     logger.debug('HOST_NAME: {}'.format(HOST_NAME))
     logger.debug('FRAME_RATE: {}'.format(FRAME_RATE))
     logger.debug('RESOLUTION: {}'.format(RESOLUTION))
     logger.debug('CAMERA: {}'.format(CAMERA))
+    logger.debug('USE_CLIENT_TIME: {}'.format(USE_CLIENT_TIME))
 
     return

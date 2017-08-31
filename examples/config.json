@@ -3,5 +3,6 @@
     "stats": true,
     "framerate": 2,
     "resolution": "720p",
-    "camera": "pi"
+    "camera": "pi",
+    "client time": false
 }

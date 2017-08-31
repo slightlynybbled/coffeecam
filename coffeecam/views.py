@@ -5,7 +5,7 @@ import os
 
 from coffeecam import *
 from coffeecam.camera_pi import Camera
-from coffeecam.config import HOST_NAME
+from coffeecam.config import HOST_NAME, USE_CLIENT_TIME
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
@@ -36,6 +36,9 @@ def about():
 
 @pages.route('/set_time', methods=['POST'])
 def set_time():
+    if not USE_CLIENT_TIME:
+        return '', 200
+
     date = int(int(flask.request.form['date'])/1000)
 
     dt = datetime.datetime.fromtimestamp(date)
