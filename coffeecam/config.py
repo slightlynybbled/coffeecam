@@ -7,13 +7,13 @@ import json
 import logging
 
 logger = logging.getLogger(__name__)
-logger.setLevel(logging.DEBUG)
+logger.setLevel(logging.INFO)
 
 # defaults if the element is not specified
 SHOW_STATS = True
 HOST_NAME = 'coffeeCam'
 FRAME_RATE = 2
-RESOLUTION = '720p'
+RESOLUTION = '640x480'
 CAMERA = 'pi'
 
 
@@ -54,6 +54,7 @@ def parse_config():
 
     logger.debug('SHOW_STATS: {}'.format(SHOW_STATS))
     logger.debug('HOST_NAME: {}'.format(HOST_NAME))
+    logger.debug('FRAME_RATE: {}'.format(FRAME_RATE))
     logger.debug('RESOLUTION: {}'.format(RESOLUTION))
     logger.debug('CAMERA: {}'.format(CAMERA))
 

@@ -1,5 +1,4 @@
 import datetime
-import humanize
 import flask
 import logging
 import os
