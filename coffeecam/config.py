@@ -16,10 +16,12 @@ FRAME_RATE = 2
 RESOLUTION = '640x480'
 CAMERA = 'pi'
 USE_CLIENT_TIME = False
+PORT = 80
 
 
 def parse_config():
     global SHOW_STATS, HOST_NAME, FRAME_RATE, RESOLUTION, CAMERA
+    global PORT
 
     if '-c' not in sys.argv and '--config' not in sys.argv:
         logger.error('configuration not found, using defaults')
@@ -56,11 +58,15 @@ def parse_config():
     if config.get('client time'):
         CAMERA = config.get('client time')
 
+    if config.get('port'):
+        PORT = config.get('port')
+
     logger.debug('SHOW_STATS: {}'.format(SHOW_STATS))
     logger.debug('HOST_NAME: {}'.format(HOST_NAME))
     logger.debug('FRAME_RATE: {}'.format(FRAME_RATE))
     logger.debug('RESOLUTION: {}'.format(RESOLUTION))
     logger.debug('CAMERA: {}'.format(CAMERA))
     logger.debug('USE_CLIENT_TIME: {}'.format(USE_CLIENT_TIME))
+    logger.debug('PORT: {}'.format(PORT))
 
     return

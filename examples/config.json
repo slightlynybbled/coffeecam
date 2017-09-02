@@ -4,5 +4,6 @@
     "framerate": 2,
     "resolution": "720p",
     "camera": "pi",
-    "client time": false
+    "client time": false,
+    "port": 80
 }

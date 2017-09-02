@@ -6,6 +6,7 @@ from waitress import serve
 
 from coffeecam.util import md5
 from coffeecam import create_app
+from coffeecam.config import PORT
 
 
 app = create_app()
@@ -31,4 +32,4 @@ def hashed_url_for(endpoint, **values):
 
 
 def main():
-    serve(app, host='0.0.0.0', port=80)
+    serve(app, host='0.0.0.0', port=PORT)
