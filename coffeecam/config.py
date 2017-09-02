@@ -11,6 +11,7 @@ logger.setLevel(logging.INFO)
 
 # defaults if the element is not specified
 SHOW_STATS = True
+TITLE = 'coffeeCam'
 HOST_NAME = 'coffeeCam'
 FRAME_RATE = 2
 RESOLUTION = '640x480'
@@ -20,7 +21,7 @@ PORT = 80
 
 
 def parse_config():
-    global SHOW_STATS, HOST_NAME, FRAME_RATE, RESOLUTION, CAMERA
+    global SHOW_STATS, TITLE, HOST_NAME, FRAME_RATE, RESOLUTION, CAMERA
     global PORT
 
     if '-c' not in sys.argv and '--config' not in sys.argv:
@@ -42,6 +43,9 @@ def parse_config():
     # load each parameter from the config file (if present)
     if config.get('stats'):
         SHOW_STATS = config.get('stats')
+
+    if config.get('title'):
+        TITLE = config.get('title')
 
     if config.get('host'):
         HOST_NAME = config.get('host')

@@ -5,7 +5,7 @@ import os
 
 from coffeecam import *
 from coffeecam.camera_pi import Camera
-from coffeecam.config import HOST_NAME, USE_CLIENT_TIME
+from coffeecam.config import HOST_NAME, USE_CLIENT_TIME, TITLE
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
@@ -24,6 +24,7 @@ def index():
     return flask.render_template(
         'index.jinja2',
         user_id=user_id,
+        title=TITLE,
         show_stats=SHOW_STATS,
         host=HOST_NAME
     )
