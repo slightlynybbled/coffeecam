@@ -33,3 +33,4 @@ def hashed_url_for(endpoint, **values):
 
 def main():
     serve(app, host='0.0.0.0', port=PORT)
+    #app.run(host='0.0.0.0', port=PORT, debug=True)

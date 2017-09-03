@@ -3,9 +3,11 @@ import flask
 import logging
 import os
 
+import humanize
+
 from coffeecam import *
 from coffeecam.camera_pi import Camera
-from coffeecam.config import HOST_NAME, USE_CLIENT_TIME, TITLE
+from coffeecam.config import HOST_NAME, USE_CLIENT_TIME, TITLE, MESSAGES
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
@@ -14,6 +16,7 @@ pages = flask.Blueprint('pages', __name__)
 
 users = set()
 last_checkin = dict()
+messages = []
 
 
 @pages.route('/')
@@ -26,7 +29,8 @@ def index():
         user_id=user_id,
         title=TITLE,
         show_stats=SHOW_STATS,
-        host=HOST_NAME
+        host=HOST_NAME,
+        messages=MESSAGES
     )
 
 
@@ -87,3 +91,41 @@ def users():
     return flask.jsonify(
         {'current_users': current_users, 'num_of_users': num_of_users}
     )
+
+
+@pages.route('/message', methods=['POST'])
+def message():
+    msg = flask.request.form.get('message').strip()
+    if msg == '':
+        return '', 200
+
+    user_id = flask.request.remote_addr.split('.')[-1]
+
+    messages.append(
+        {
+            'user': user_id,
+            'time': datetime.datetime.now(),
+            'message': msg
+        }
+    )
+
+    while len(messages) > MESSAGES:
+        messages.pop(0)
+
+    return '', 200
+
+
+@pages.route('/messages', methods=['POST'])
+def get_messages():
+    new_messages = [
+        {'user': 'user', 'time': 'time', 'message': 'message'}
+    ]
+
+    for m in messages:
+        new_messages.append({
+            'user': m['user'],
+            'time': humanize.naturaltime(datetime.datetime.now() - m['time']),
+            'message': m['message']
+        })
+
+    return flask.jsonify({'messages': new_messages})

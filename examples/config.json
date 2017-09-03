@@ -6,5 +6,6 @@
     "resolution": "720p",
     "camera": "pi",
     "client time": false,
-    "port": 80
+    "port": 80,
+    "messages": 10
 }

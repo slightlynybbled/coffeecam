@@ -14,24 +14,26 @@
     <div class="row">
 
         {% if show_stats %}
-        <div class="col-md-8">
-        {% else %}
-        <div class="col-md-12">
-        {% endif %}
+            <div class="col-md-8">
             <img class="img-fluid rounded" src="{{ url_for('pages.video_feed') }}" id="coffeepic">
-        </div>
-
-        {% if show_stats %}
-        <div class="col-md-4">
+            </div>
+            <div class="col-md-4">
             {% include "stats.jinja2" %}
-        </div>
-        {% endif %}
+            </div>
 
-        </div>
+        {% else %}
+            <div class="col-md-12">
+            <img class="img-fluid rounded" src="{{ url_for('pages.video_feed') }}" id="coffeepic">
+            </div>
+        {% endif %}
 
     </div>
-</div>
 
+    {% if messages > 0 %}
+        {% include "messages.jinja2" %}
+    {% endif %}
+
+</div>
 
 
 {% endblock %}
