@@ -103,4 +103,3 @@ Screenshots
 -------------------
 
     .. image:: https://github.com/slightlynybbled/coffeecam/blob/master/docs/img/coffeecam-full.png
-    .. image:: https://github.com/slightlynybbled/coffeecam/blob/master/docs/img/coffeecam-small.png
