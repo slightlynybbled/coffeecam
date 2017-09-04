@@ -27,7 +27,7 @@ setup(
     ],
     author='Jason R. Jones',
     author_email='slightlynybbled@gmail.com',
-    url='',
+    url='https://github.com/slightlynybbled/coffeecam',
     keywords='web flask camera pi',
     packages=find_packages(),
     include_package_data=True,

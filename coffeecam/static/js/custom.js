@@ -65,14 +65,16 @@ function getMessages(){
             console.log(msgs);
             $("#messageTable").find("tr").remove();
 
-            msgs.forEach(function(point){
-                var user_html = '<td>' + point['user'] + '</td>';
-                var time_html = '<td>' + point['time'] + '</td>';
-                var message_html = '<td>' + point['message'] + '</td>';
+            if(msgs.length > 1){
+                msgs.forEach(function(point){
+                    var user_html = '<td>' + point['user'] + '</td>';
+                    var time_html = '<td>' + point['time'] + '</td>';
+                    var message_html = '<td>' + point['message'] + '</td>';
 
-                var html = "<tr>" + user_html + time_html + message_html + "</tr>";
-                $('#messageTable').append(html);
-            });
+                    var html = "<tr>" + user_html + time_html + message_html + "</tr>";
+                    $('#messageTable').append(html);
+                });
+            }
         }
     );
 }
