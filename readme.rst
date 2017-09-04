@@ -36,9 +36,9 @@ or the dependency ``picamera`` will not be runnable::
 Running
 -------------------
 
-===================
+========================
 From the Command Line
-===================
+========================
 
 This package will serve up pages by simply starting it.  If you have
 installed coffeecam into the path ``/home/myname/py3env``, then
