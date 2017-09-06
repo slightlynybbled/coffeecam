@@ -30,6 +30,7 @@ setup(
     keywords='web flask camera pi',
     packages=find_packages(),
     include_package_data=True,
+    package_data = {'coffeecam': ['static/*', 'templates/*']},
     zip_safe=False,
     install_requires=requires,
     entry_points={'console_scripts': ['coffeecam = coffeecam.__main__:main']}
